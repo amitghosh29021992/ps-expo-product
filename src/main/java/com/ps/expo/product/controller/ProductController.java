@@ -5,8 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.ps.expo.product.model.Product;
 
 @RestController
@@ -34,5 +39,11 @@ public class ProductController {
         }
         log.info("Product data -> {}", product);
         return product;
+    }
+
+    // GET Endpoint to fetch all products
+    @GetMapping
+    public List<Product> getAllProducts() {
+        return new ArrayList<>(mockDatabase.values());
     }
 }
