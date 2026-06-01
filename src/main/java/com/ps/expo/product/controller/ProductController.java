@@ -18,9 +18,10 @@ public class ProductController {
     private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 
     static {
-        mockDatabase.put("101", new Product("101", "Wireless Mouse", 29.99, "Ergonomic 2.4GHz mouse."));
-        mockDatabase.put("102", new Product("102", "Mechanical Keyboard", 89.99, "RGB backlit blue-switch keyboard."));
-        mockDatabase.put("103", new Product("103", "Gaming Monitor", 249.99, "27-inch 144Hz 1ms display."));
+        mockDatabase.put("101", new Product("101", "Wireless Mouse", 29.99, "Ergonomic 2.4GHz mouse.", "Electronics"));
+        mockDatabase.put("102", new Product("102", "Mechanical Keyboard", 89.99, "RGB backlit blue-switch keyboard.", "Electronics"));
+        mockDatabase.put("103", new Product("103", "Gaming Monitor", 249.99, "27-inch 144Hz 1ms display.", "Electronics"));
+        mockDatabase.put("103", new Product("104", "T-Shirt", 999.99, "Black XL", "Cloths"));
     }
 
     // GET Endpoint to fetch product by ID
@@ -34,5 +35,14 @@ public class ProductController {
         }
         log.info("Product data -> {}", product);
         return product;
+    }
+
+    // GET Endpoint to fetch product by Catagory
+    @GetMapping
+    public List<Product> getProductById(@RequestParam String catagory) {
+        List<Product> products = mockDatabase.entrySet().stream().filter(i -> i.getValue().getCategory().equals(category).collect(Collectors.toList());
+
+        log.info("Product data for category: {} -> {}", category, products);
+        return products;
     }
 }
