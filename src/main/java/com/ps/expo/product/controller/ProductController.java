@@ -39,7 +39,7 @@ public class ProductController {
 
     // GET Endpoint to fetch product by Catagory
     @GetMapping
-    public List<Product> getProductById(@queyParam String catagory) {
+    public List<Product> getProductById(@RequestParam String catagory) {
         List<Product> products = mockDatabase.entrySet().stream().filter(i -> i.getValue().getCategory().equals(category).collect(Collectors.toList());
 
         log.info("Product data for category: {} -> {}", category, products);
